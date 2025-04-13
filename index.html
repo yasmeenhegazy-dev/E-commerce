@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>E-commerce</title>
+  <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+ 
+ <!--Navbar-->
+ <nav class="navbar navbar-expend-lg bg-body-tertiary container">
+<div class="container">
+<button class=" btn btn-dark" @click="isCartActive=false" >Products</button>
+  <button class="btn btn-dark"  @click="isCartActive=true">Cart</button>
+</div>
+ </nav>
+ <!--All-->
+ <div class="container">
+
+  <!--Products-->
+
+<div class="row mt-5" v-if="!isCartActive">
+  <div class="col col-4" v-for="product in products" >
+    <div class="card mt-4" style="width: 18rem;">
+      <img :src="product.image" class="card-img-top" style="width:90px;height:70px">
+      <div class="card-body">
+        <h5 class="card-title">{{product.title}}</h5>
+        <p class="card-text">{{product.description}}</p>
+        <button  class="btn btn-primary" @click="addToCart(product)" :disabled="product.stock==0">Add To Cart</button>
+        <diV class="btn btn-dark ms-3">stock:{{product.stock}}</diV>
+      </div>
+
+    </div>
+
+
+</div>
+</div>
+
+
+
+
+  <!--Cart-->
+
+  <div class="container" v-if="isCartActive">
+<div class="alert alert-warning mt-3" v-if="cart.length==0">No products in cart</div>
+
+  <table v-if="cart.length!=0" class="table table-bordered table-hover table-striped mt-5">
+    <tr>
+       <th>id</th>
+       <th>name</th>
+       <th>img</th>
+       <th>price</th>
+       <th>quantity</th>
+       <th>controls</th>
+    </tr>
+
+    <tr v-for="item in cart">
+      <td>{{item.product.id}}</td>
+      <td>{{item.product.title}}</td>
+      <td><img :src="item.product.image" style="width: 60px; height:60px;"></td>
+      <td>{{item.product.price}}</td>
+      <td>{{item.quantity}}</td>
+      <td><button class="btn btn-danger" @click="deleteCart(item)">delete</button></td>
+    </tr>
+
+
+
+  </table>
+  </div>
+
+
+ </div>
+
+
+</div>
+    <script src="vue.global.prod.js"></script>
+    <script src="bootstrap-5.3.3-dist/js/popper.js"></script>
+    <Script src="bootstrap-5.3.3-dist/js/jquery-3.7.1.min.js"></Script>
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.js"></script>
+    <script src="products.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
