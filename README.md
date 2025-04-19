@@ -2,7 +2,7 @@
 E-commerce website 
 ##Discription
 Built an E-commerce website 
-Using(Html , JavaScript , vue.js)
+Using(Html , bootstrap, JavaScript , vue.js)
 ###Features:
 Product listing
 Cart management
